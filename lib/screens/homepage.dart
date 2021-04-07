@@ -37,6 +37,14 @@ List<String> images = [
   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRw9eze6Q9nl6JAti65wFLqdJ-wtPVrXbeqYA&usqp=CAU',
 ];
 
+List<String> images2 = [
+  'https://media.architecturaldigest.com/photos/5f443cc63505a8a74b113615/1:1/w_1280%2Cc_limit/groovy-swivel-chair-o.jpg',
+  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlBQbRG-7WYVsAVg6-nArLwOT3akVWMBs0lNRjPk0NbAW1RxFVq5pbO-AZQFt62lICS0w&usqp=CAU',
+  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKnCIq6t74LDg5IRbbOodjHBSxhQNyUW9xMA&usqp=CAU',
+  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPQC5_DPFqj9zyOKzJVeOGevIiTOvcCZLjTA&usqp=CAU',
+  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcbIkmuRFDv0jxZnhUa2uS_7Nd2OhBW2pbaw&usqp=CAU',
+];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,26 +90,26 @@ List<String> images = [
           Container(
             height: 250.0,
             margin: EdgeInsets.only(left: 10.0, bottom: 10.0),
-            child: scrollItem(),
+            child: scrollItem(images),
           ),
           headerSection('Best Seller'),
           Container(
             height: 250.0,
             margin: EdgeInsets.only(left: 10.0, bottom: 10.0),
-            child: scrollItem()
+            child: scrollItem(images2)
           ),
           bestSellerSection()
         ],
       ),
     );
   }
-  scrollItem() {
+  scrollItem(List<String> img) {
     return ListView.builder(
       scrollDirection: Axis.horizontal,
-      itemCount: images.length,
+      itemCount: img.length,
       itemBuilder: (context, index){
         return Item(
-          images[index],
+          img[index],
           MediaQuery.of(context).size.width/2
         );
       },

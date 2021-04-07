@@ -2,7 +2,7 @@ import 'package:arado/screens/drawerscreens/aboutus.dart';
 import 'package:arado/screens/drawerscreens/contauctus.dart';
 import 'package:arado/screens/drawerscreens/profile.dart';
 import 'package:arado/screens/drawerscreens/setting.dart';
-import 'package:arado/screens/homepage.dart';
+import 'package:arado/screens/login.dart';
 import 'package:flutter/material.dart';
 
 
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
  Widget build(BuildContext context) {
    return MaterialApp(
      debugShowCheckedModeBanner: false,
-     home: HomePage(),
+     home: Login(),
      routes: {
        'My Account' : (context) => Profile(),
        'Settings' : (context) => Setting(),
