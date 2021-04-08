@@ -1,6 +1,7 @@
 import 'package:arado/screens/homepage.dart';
 import 'package:arado/screens/signup.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 
@@ -79,7 +80,7 @@ bool secure = true;
                   'Login',
                   style: TextStyle(color: Colors.white, fontSize: 20.0)
                 ),
-                onPressed: () {
+                onPressed: () async {
                   if(!formKey.currentState.validate()){
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
@@ -89,6 +90,8 @@ bool secure = true;
                       ),
                     );
                   }else{
+                    SharedPreferences _user = await SharedPreferences.getInstance();
+                    _user.setString('email', emailController.text);
                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) {return HomePage();}));
                   }
                 },

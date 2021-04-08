@@ -16,7 +16,7 @@ final Map<int, List> drawerItem = {
     Icons.account_circle
   ],
   1 : [
-    'Settings',
+    'Add Product',
     Icons.settings
   ],
   2 : [
