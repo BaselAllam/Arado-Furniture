@@ -1,4 +1,5 @@
 import 'package:arado/screens/homepage.dart';
+import 'package:arado/screens/signup.dart';
 import 'package:flutter/material.dart';
 
 
@@ -46,6 +47,31 @@ bool secure = true;
               ),
               field('Email Address', Icons.email, TextInputType.emailAddress, false, emailController, emailKey),
               field('Password', Icons.lock, TextInputType.text, secure, passwordController, passwordKey),
+              // Builder(
+              //   builder: (BuildContext context) {
+              //     return FlatButton(
+              //       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+              //       color: Colors.black,
+              //       child: Text(
+              //         'Login',
+              //         style: TextStyle(color: Colors.white, fontSize: 20.0)
+              //       ),
+              //       onPressed: () {
+              //         if(!formKey.currentState.validate()){
+              //           Scaffold.of(context).showSnackBar(
+              //             SnackBar(
+              //               backgroundColor: Colors.red,
+              //               duration: Duration(seconds: 4),
+              //               content: Text('Some Fields Required?!'),
+              //             ),
+              //           );
+              //         }else{
+              //           Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) {return HomePage();}));
+              //         }
+              //       },
+              //     );
+              //   },
+              // ),
               FlatButton(
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 color: Colors.black,
@@ -55,7 +81,13 @@ bool secure = true;
                 ),
                 onPressed: () {
                   if(!formKey.currentState.validate()){
-
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        backgroundColor: Colors.red,
+                        duration: Duration(seconds: 4),
+                        content: Text('Some Fields Required?!'),
+                      ),
+                    );
                   }else{
                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) {return HomePage();}));
                   }
@@ -80,7 +112,9 @@ bool secure = true;
                         style: TextStyle(color: Colors.grey, fontSize: 20.0, height: 2.0),
                       ),
                     InkWell(
-                      onTap : () {},
+                      onTap : () {
+                        Navigator.push(context, MaterialPageRoute(builder: (_) {return SignUp();}));
+                      },
                       child: Text(
                         '  Sign up',
                         style: TextStyle(color: Colors.black, fontSize: 20.0, height: 2.0),
