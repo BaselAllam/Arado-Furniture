@@ -1,9 +1,16 @@
+import 'package:arado/models/mainmodel.dart';
+import 'package:arado/models/product/productcontroller.dart';
 import 'package:arado/screens/result.dart';
 import 'package:arado/widgets/item.dart';
 import 'package:flutter/material.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 
 class HomePage extends StatefulWidget {
+
+final MainModel product;
+HomePage(this.product);
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -44,6 +51,12 @@ List<String> images2 = [
   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPQC5_DPFqj9zyOKzJVeOGevIiTOvcCZLjTA&usqp=CAU',
   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcbIkmuRFDv0jxZnhUa2uS_7Nd2OhBW2pbaw&usqp=CAU',
 ];
+
+@override
+void initState() {
+  widget.product.getProducts();
+  super.initState();
+}
 
   @override
   Widget build(BuildContext context) {
@@ -104,15 +117,26 @@ List<String> images2 = [
     );
   }
   scrollItem(List<String> img) {
-    return ListView.builder(
-      scrollDirection: Axis.horizontal,
-      itemCount: img.length,
-      itemBuilder: (context, index){
-        return Item(
-          img[index],
-          MediaQuery.of(context).size.width/2
-        );
-      },
+    return ScopedModelDescendant(
+      builder: (context, child, MainModel product){
+        if(product.isGetProductLoading == true){
+          return Center(child: CircularProgressIndicator());
+        }else if(product.allProducts.isEmpty){
+          return Center(child: Text('No Products Found'));
+        }else{
+          return ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: product.allProducts.length,
+            itemBuilder: (context, index){
+              return Item(
+                product.allProducts[index].image,
+                MediaQuery.of(context).size.width/2,
+                product.allProducts[index].id
+              );
+            },
+          );
+        }
+      }
     );
   }
   bestSellerSection() {
@@ -121,7 +145,8 @@ List<String> images2 = [
         for(var i in images)
           Item(
             i,
-            MediaQuery.of(context).size.width
+            MediaQuery.of(context).size.width,
+            '1'
           )
       ],
     );

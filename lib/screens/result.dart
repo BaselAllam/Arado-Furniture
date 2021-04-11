@@ -69,7 +69,8 @@ List<String> images2 = [
       itemBuilder: (context, index){
         return Item(
           list[index],
-          0.0
+          0.0,
+          '1'
         );
       }
     );

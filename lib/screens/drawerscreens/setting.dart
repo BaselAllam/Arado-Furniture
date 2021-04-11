@@ -1,5 +1,8 @@
+import 'package:arado/models/mainmodel.dart';
+import 'package:arado/models/product/productcontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 
 class Setting extends StatefulWidget {
@@ -68,19 +71,43 @@ PickedFile image;
               ),
                 field('Product Name', Icons.text_fields, TextInputType.text, productNameController, productNameKey),
                 field('Price', Icons.attach_money, TextInputType.number, priceController, priceKey),
-                FlatButton(
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                  color: Colors.black,
-                  child: Text(
-                    'Add',
-                    style: TextStyle(color: Colors.white, fontSize: 20.0)
-                  ),
-                  onPressed: () {}
+                ScopedModelDescendant(
+                  builder: (context, child, MainModel product) {
+                    return FlatButton(
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                      color: Colors.black,
+                      child: product.isAddProductLoading == true ? 
+                      Center(child: CircularProgressIndicator()) : 
+                       Text(
+                        'Add',
+                        style: TextStyle(color: Colors.white, fontSize: 20.0)
+                      ),
+                      onPressed: () async {
+                        bool _valid = await product.addProduct(
+                          productNameController.text,
+                          double.parse(priceController.text),
+                          'https://i.guim.co.uk/img/media/2055259f8f957013aac7eb466ddb6064151608cf/492_196_2043_1226/master/2043.jpg?width=445&quality=45&auto=format&fit=max&dpr=2&s=480e1e7f1601deab23541eed014446ca',
+                        );
+                        if(_valid == true){
+                          ScaffoldMessenger.of(context).showSnackBar(snack('Added'));
+                        }else{
+                          ScaffoldMessenger.of(context).showSnackBar(snack('Error'));
+                        }
+                      }
+                    );
+                  }
                 ),
             ],
           ),
         ),
       ),
+    );
+  }
+  snack(String content){
+    return SnackBar(
+      backgroundColor: Colors.red,
+      duration: Duration(seconds: 4),
+      content: Text(content),
     );
   }
   field(String label, IconData icon, TextInputType type, TextEditingController controller, Key key) {

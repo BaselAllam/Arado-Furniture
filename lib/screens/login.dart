@@ -92,7 +92,7 @@ bool secure = true;
                   }else{
                     SharedPreferences _user = await SharedPreferences.getInstance();
                     _user.setString('email', emailController.text);
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) {return HomePage();}));
+                    //Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) {return HomePage();}));
                   }
                 },
               ),

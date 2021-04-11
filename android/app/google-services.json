@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "123994645055",
+    "project_id": "arado-254e9",
+    "storage_bucket": "arado-254e9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:123994645055:android:05d7d96ee3d7beffda0e8a",
+        "android_client_info": {
+          "package_name": "com.example.arado"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "123994645055-btm60pdit3pur28h75qd2g0k1okb9dmv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.arado",
+            "certificate_hash": "abef9d4b46a6cba83d95438e8d44e4ed6a6d5eed"
+          }
+        },
+        {
+          "client_id": "123994645055-1pi5qsebh2fq9o465ai1umtas7peguri.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSso2Tr1FtB9EotCs5NOPPIlbrTLijK-8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "123994645055-1pi5qsebh2fq9o465ai1umtas7peguri.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
