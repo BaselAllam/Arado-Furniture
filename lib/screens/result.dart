@@ -1,3 +1,4 @@
+import 'package:arado/responsive/responsive.dart';
 import 'package:arado/widgets/item.dart';
 import 'package:flutter/material.dart';
 
@@ -33,6 +34,7 @@ List<String> images2 = [
 
   @override
   Widget build(BuildContext context) {
+    double deviceHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
@@ -53,16 +55,17 @@ List<String> images2 = [
       body: Container(
         margin: EdgeInsets.only(left: 5.0, right: 5.0),
         child: grid(
-          widget.className == 'Best Seller' ? images : images2
+          widget.className == 'Best Seller' ? images : images2,
+          deviceHeight
         )
       ),
     );
   }
-  grid(List<String> list) {
+  grid(List<String> list, double deviceHeight) {
     return GridView.builder(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        childAspectRatio: 0.8
+        childAspectRatio: responsiveResultRation(deviceHeight)
       ),
       scrollDirection: Axis.vertical,
       itemCount: list.length,
